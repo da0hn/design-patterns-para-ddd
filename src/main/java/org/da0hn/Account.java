@@ -5,6 +5,8 @@ import java.util.List;
 
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.summingDouble;
+import static org.da0hn.TransactionType.CREDIT;
+import static org.da0hn.TransactionType.DEBIT;
 
 public class Account {
   private final String bank;
@@ -24,7 +26,7 @@ public class Account {
   }
 
   public void credit(final double amount) {
-    this.transactions.add(new Transaction("credit", amount));
+    this.transactions.add(new Transaction(CREDIT, amount));
   }
 
   public double getBalance() {
@@ -34,10 +36,10 @@ public class Account {
         summingDouble(Transaction::amount)
       ));
 
-    return transactionsByType.getOrDefault("credit", 0.0) - transactionsByType.getOrDefault("debit", 0.0);
+    return transactionsByType.getOrDefault(CREDIT, 0.0) - transactionsByType.getOrDefault(DEBIT, 0.0);
   }
 
   public void debit(final double amount) {
-    this.transactions.add(new Transaction("debit", amount));
+    this.transactions.add(new Transaction(DEBIT, amount));
   }
 }

@@ -1,4 +1,4 @@
 package org.da0hn;
 
-public record Transaction(String type, Double amount) {
+public record Transaction(TransactionType type, Double amount) {
 }
