@@ -1,4 +1,8 @@
-package org.da0hn;
+package org.da0hn.data;
+
+import org.da0hn.core.ports.Command;
+import org.da0hn.core.ports.Listener;
+import org.da0hn.core.ports.Publisher;
 
 import java.util.ArrayList;
 import java.util.List;

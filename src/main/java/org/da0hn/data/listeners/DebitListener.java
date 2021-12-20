@@ -1,11 +1,17 @@
-package org.da0hn;
+package org.da0hn.data.listeners;
 
-import static org.da0hn.TransactionType.DEBIT;
+import org.da0hn.core.commands.DebitCommand;
+import org.da0hn.core.domain.TransactionType;
+import org.da0hn.core.ports.AccountRepository;
+import org.da0hn.core.ports.Command;
+import org.da0hn.core.ports.Listener;
 
-public class DebitHandler implements Listener {
+import static org.da0hn.core.domain.TransactionType.DEBIT;
+
+public class DebitListener implements Listener {
   private final AccountRepository accountRepository;
 
-  public DebitHandler(final AccountRepository accountRepository) {
+  public DebitListener(final AccountRepository accountRepository) {
     this.accountRepository = accountRepository;
   }
 

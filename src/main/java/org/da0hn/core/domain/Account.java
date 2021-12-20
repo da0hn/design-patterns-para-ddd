@@ -1,12 +1,10 @@
-package org.da0hn;
+package org.da0hn.core.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.summingDouble;
-import static org.da0hn.TransactionType.CREDIT;
-import static org.da0hn.TransactionType.DEBIT;
 
 public class Account {
   private final String bank;
@@ -26,7 +24,7 @@ public class Account {
   }
 
   public void credit(final double amount) {
-    this.transactions.add(new Transaction(CREDIT, amount));
+    this.transactions.add(new Transaction(TransactionType.CREDIT, amount));
   }
 
   public double getBalance() {
@@ -36,11 +34,11 @@ public class Account {
         summingDouble(Transaction::amount)
       ));
 
-    return transactionsByType.getOrDefault(CREDIT, 0.0) - transactionsByType.getOrDefault(DEBIT, 0.0);
+    return transactionsByType.getOrDefault(TransactionType.CREDIT, 0.0) - transactionsByType.getOrDefault(TransactionType.DEBIT, 0.0);
   }
 
   public void debit(final double amount) {
-    this.transactions.add(new Transaction(DEBIT, amount));
+    this.transactions.add(new Transaction(TransactionType.DEBIT, amount));
   }
 
   public String getDocument() {

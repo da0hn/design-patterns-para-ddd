@@ -1,4 +1,4 @@
-package org.da0hn;
+package org.da0hn.core.domain;
 
 public enum TransactionType {
   CREDIT,

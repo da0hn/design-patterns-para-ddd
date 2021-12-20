@@ -1,4 +1,7 @@
-package org.da0hn;
+package org.da0hn.data;
+
+import org.da0hn.core.domain.Account;
+import org.da0hn.core.ports.AccountRepository;
 
 import java.util.ArrayList;
 import java.util.List;

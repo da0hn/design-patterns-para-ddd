@@ -1,11 +1,17 @@
-package org.da0hn;
+package org.da0hn.data.listeners;
 
-import static org.da0hn.TransactionType.CREDIT;
+import org.da0hn.core.commands.CreditCommand;
+import org.da0hn.core.domain.TransactionType;
+import org.da0hn.core.ports.AccountRepository;
+import org.da0hn.core.ports.Command;
+import org.da0hn.core.ports.Listener;
 
-public class CreditHandler implements Listener {
+import static org.da0hn.core.domain.TransactionType.CREDIT;
+
+public class CreditListener implements Listener {
   private final AccountRepository accountRepository;
 
-  public CreditHandler(final AccountRepository accountRepository) {
+  public CreditListener(final AccountRepository accountRepository) {
     this.accountRepository = accountRepository;
   }
 

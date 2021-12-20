@@ -1,5 +1,14 @@
 package org.da0hn;
 
+import org.da0hn.application.AccountServiceImpl;
+import org.da0hn.core.domain.AccountBuilder;
+import org.da0hn.core.ports.AccountService;
+import org.da0hn.core.ports.Publisher;
+import org.da0hn.data.AccountRepositoryImpl;
+import org.da0hn.data.PublisherImpl;
+import org.da0hn.data.listeners.CreditListener;
+import org.da0hn.data.listeners.DebitListener;
+import org.da0hn.data.listeners.TransferListener;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -17,9 +26,9 @@ class AccountTest {
   void setUp() {
     this.publisher = new PublisherImpl();
     this.repository = new AccountRepositoryImpl();
-    this.publisher.register(new CreditHandler(this.repository));
-    this.publisher.register(new DebitHandler(this.repository));
-    this.publisher.register(new TransferHandler(this.repository));
+    this.publisher.register(new CreditListener(this.repository));
+    this.publisher.register(new DebitListener(this.repository));
+    this.publisher.register(new TransferListener(this.repository));
     this.accountService = new AccountServiceImpl(this.repository, this.publisher);
   }
 

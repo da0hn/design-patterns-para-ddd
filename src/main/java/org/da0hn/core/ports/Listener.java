@@ -1,4 +1,6 @@
-package org.da0hn;
+package org.da0hn.core.ports;
+
+import org.da0hn.core.domain.TransactionType;
 
 public interface Listener {
   TransactionType operation();

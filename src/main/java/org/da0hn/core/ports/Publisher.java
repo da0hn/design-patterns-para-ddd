@@ -1,4 +1,4 @@
-package org.da0hn;
+package org.da0hn.core.ports;
 
 public interface Publisher {
   void register(Listener listener);
