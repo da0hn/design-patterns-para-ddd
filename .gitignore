@@ -27,10 +27,12 @@ crashlytics-build.properties
 fabric.properties
 .idea/httpRequests
 .idea/caches/build_file_checksums.ser
+.idea/
 *.iml
 modules.xml
 .idea/misc.xml
 *.ipr
+.idea/sonarlint
 *.class
 *.log
 *.ctxt
