@@ -43,4 +43,28 @@ class AccountTest {
     account.debit(500);
     assertEquals(500, account.getBalance(), "Balance should be 500");
   }
+
+  @Test
+  @DisplayName("Deve criar duas contas e fazer uma transferência")
+  void shouldCreateTwoAccountsAndTransfer() {
+    final var accountTo = new AccountBuilder("111.111.111-11")
+      .account("123456-7")
+      .bank("033")
+      .branch("001")
+      .build();
+
+    final var accountFrom = new AccountBuilder("000.000.000-01")
+      .account("876543-7")
+      .bank("033")
+      .branch("001")
+      .build();
+
+    accountFrom.credit(1000);
+    accountTo.credit(500);
+    final var transferService = new TransferService();
+    transferService.transfer(accountFrom, accountTo, 700);
+    assertEquals(300, accountFrom.getBalance(), "Account From should transfer 700");
+    assertEquals(1200, accountTo.getBalance(), "Account To should receive 700");
+  }
+
 }
