@@ -42,4 +42,8 @@ public class Account {
   public void debit(final double amount) {
     this.transactions.add(new Transaction(DEBIT, amount));
   }
+
+  public String getDocument() {
+    return this.document;
+  }
 }
