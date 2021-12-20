@@ -27,7 +27,10 @@ class AccountTest {
       .bank("033")
       .branch("001")
       .build();
-    account.credit(1000);
+
+    final var creditCommand = new CreditCommand(account, 1000);
+    creditCommand.execute();
+
     assertEquals(1000, account.getBalance(), "Balance should be 1000");
   }
 
@@ -39,8 +42,12 @@ class AccountTest {
       .bank("033")
       .branch("001")
       .build();
-    account.credit(1000);
-    account.debit(500);
+
+    final var creditCommand = new CreditCommand(account, 1000);
+    creditCommand.execute();
+
+    final var debitCommand = new DebitCommand(account, 500);
+    debitCommand.execute();
     assertEquals(500, account.getBalance(), "Balance should be 500");
   }
 
@@ -59,10 +66,14 @@ class AccountTest {
       .branch("001")
       .build();
 
-    accountFrom.credit(1000);
-    accountTo.credit(500);
-    final var transferService = new TransferService();
-    transferService.transfer(accountFrom, accountTo, 700);
+    final var creditCommandFrom = new CreditCommand(accountFrom, 1000);
+    creditCommandFrom.execute();
+    final var creditCommandTo = new CreditCommand(accountTo, 500);
+    creditCommandTo.execute();
+
+    final var transferCommand = new TransferCommand(accountFrom, accountTo, 700);
+    transferCommand.execute();
+
     assertEquals(300, accountFrom.getBalance(), "Account From should transfer 700");
     assertEquals(1200, accountTo.getBalance(), "Account To should receive 700");
   }
